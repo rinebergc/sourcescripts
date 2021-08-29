@@ -12,7 +12,7 @@ START /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir 
   START /b /wait ROBOCOPY "%install_dir%\garrysmod\gamemodes\sandbox\entities\entities" "%install_dir%\garrysmod\gamemodes\terrortown\entities\entities" "base_gmodentity.lua"
   START /b /wait ROBOCOPY "%install_dir%\garrysmod\gamemodes\base\entities\weapons\weapon_base" "%install_dir%\garrysmod\gamemodes\terrortown\entities\weapons\functions" "shared.lua"
 
-(@ECHO start srcds.exe -console -game garrysmod +gamemode terrortown +sv_setsteamaccount ***REMOVED*** +host_workshop_collection ***REMOVED*** +map gm_construct +maxplayers 24) > "%install_dir%\launcher_ttt.bat"
+(@ECHO start srcds.exe -console -game garrysmod +gamemode terrortown +sv_setsteamaccount NULL +host_workshop_collection NULL +map NULL +maxplayers 24) > "%install_dir%\launcher_ttt.bat"
 REM powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\desktop\launcher_ttt.lnk');$s.TargetPath='%install_dir%\launcher_ttt.bat';$s.Save()"
 
 DEL /q %temp%\steamcmd.zip & RMDIR /s /q %temp%\steamcmd
