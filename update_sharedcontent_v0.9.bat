@@ -1,5 +1,5 @@
 @ECHO OFF
-SET account=***REMOVED***
+SET account=NULL
 SET copy_dir=C:\garrysmod\sharedcontent
 SET install_dir=%temp%\staging
 
