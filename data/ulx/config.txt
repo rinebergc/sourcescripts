@@ -1,0 +1,46 @@
+ulx showMotd 0
+ulx motdfile ""
+ulx motdurl ""
+
+ulx chattime 0
+ulx meChatEnabled 0
+ulx welcomemessage ""
+
+ulx logEvents 0
+ulx logChat 0
+ulx logSpawns 0
+ulx logSpawnsEcho 0
+ulx logJoinLeaveEcho 0
+ulx logDir "ulx_logs"
+ulx logEcho 0
+
+ulx logEchoColors 1
+ulx logEchoColorDefault "151 211 255"
+ulx logEchoColorConsole "0 0 0"
+ulx logEchoColorSelf "75 0 130"
+ulx logEchoColorEveryone "0 128 128"
+ulx logEchoColorPlayerAsGroup 1
+ulx logEchoColorPlayer "255 255 0"
+ulx logEchoColorMisc "0 255 0"
+
+ulx rslotsMode 0
+ulx rslots 0
+ulx rslotsVisible 0
+
+ulx votemapEnabled 1
+ulx votemapMintime 10
+ulx votemapWaittime 5
+ulx votemapSuccessratio 0.4
+ulx votemapMinvotes 3
+ulx votemapVetotime 30
+ulx votemapMapmode 1
+ulx voteEcho 1
+ulx votemap2Successratio 0.5
+ulx votemap2Minvotes 3
+ulx votekickSuccessratio 0.6
+ulx votekickMinvotes 2
+ulx votebanSuccessratio 0.7
+ulx votebanMinvotes 3
+
+ulx kickAfterNameChangesWarning 0
+ulx kickAfterNameChangesCooldown 0
