@@ -12,7 +12,7 @@ ECHO To reduce potential issues while the script is running Garry's Mod (and by 
 REM To reduce potential issues while the script is running Garry's Mod (and by extension any hl2.exe based Source game) has been stopped. 
 REM More information on the TASKKILL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill.
 
-SET /p "driveLetter=Please enter the letter of the drive on which your Steam installation is located: "
+SET /p "driveLetter=Please enter the letter of the drive your Steam installation is located on: "
 IF NOT DEFINED driveLetter SET "driveLetter=C"
 SET "clientDir=%driveLetter%:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod"
 
