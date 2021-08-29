@@ -38,4 +38,3 @@ DEL /q %temp%\steamcmd.zip & RMDIR /s /q %temp%\steamcmd & RMDIR /s /q %temp%\cs
 
 REM MS Docs: The temp folder is not managed by Windows and it is the responsibility of the developer using it to clean up after themselves.
 REM This may no longer be true in Windows 10.
-
