@@ -10,7 +10,7 @@ TASKKILL /f /im hl2.exe
 ECHO To reduce potential issues while the script is running Garry's Mod (and by extension any hl2.exe based Source game) has been stopped.
 
 REM To reduce potential issues while the script is running Garry's Mod (and by extension any hl2.exe based Source game) has been stopped. 
-REM More information on the TASKKILL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill
+REM More information on the TASKKILL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill.
 
 SET /p "driveLetter=Please enter the letter of the drive on which your Steam installation is located: "
 IF NOT DEFINED driveLetter SET "driveLetter=C"
@@ -39,7 +39,7 @@ REM Nesting these actions in a START command allows them to be done synchronousl
 REM SteamCMD is called to anonymously connect to the Steam network and download Counter-Strike: Source Dedicated Server to %temp%.
 REM Because CS:SDS is based on CS:S it contains all the files necessary to enable CS:S support in Garry's Mod.
 REM To save disk space once CS:SDS is downloaded only the files required by Garry's Mod are copied, leaving the rest to be deleted during cleanup.
-REM More information on the START command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/start
+REM More information on the START command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/start.
 REM More information on SteamCMD Commands is available at: https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD.
 REM More information on Steam Application IDs is available at: https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
 
@@ -56,3 +56,4 @@ REM MS Docs: The temp folder is not automatically emptied and cleanup is the res
 REM Note: Because of Storage sense in Windows 10 this may no longer be true and this could be considered legacy behavior.
 REM More information on the DEL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del.
 REM More information on the RMDIR command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rmdir.
+REM More information on Storage sense is available at: https://support.microsoft.com/en-us/windows/manage-drive-space-with-storage-sense-654f6ada-7bfc-45e5-966b-e24aded96ad5.
