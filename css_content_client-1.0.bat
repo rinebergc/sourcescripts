@@ -1,7 +1,7 @@
 @ECHO OFF
 
 REM MS Docs: REM records comments in a script, batch, or config.sys file.
-REM Echoing is set to off to limit limit console flooding.
+REM Echoing is set to off to limit console flooding.
 
 
 SET /p "driveLetter=Please enter the letter of the drive on which your Steam installation is located: "
@@ -15,10 +15,10 @@ REM If the user does not provide input the script will default to the user's C d
 
 POWERSHELL -command "If (Test-Path -Path %temp%\steamcmd\steamcmd.exe -PathType leaf) {} Else {If (Test-Path -Path %temp%\steamcmd.zip -PathType leaf) {Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd} Else {(New-Object Net.WebClient).DownloadFile('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip','%temp%\steamcmd.zip'); Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd}}"
 
-REM This script depends on access to the Steam Console Client or SteamCMD, a command-line version of the Steam client.
-REM If SteamCMD (unzipped) is located in the %temp% folder the script will continue to run.
-REM If SteamCMD (zipped) is located in the %temp% folder it will be extracted.
-REM If SteamCMD (zipped or unzipped) is not located in the %temp% folder it will be downloaded and extracted.
+REM This script requires the Steam Console Client or SteamCMD, a command-line version of the Steam client, to function.
+REM If steamcmd.exe is located in %temp%\steamcmd the script will continue to run.
+REM If steamcmd.zip is located in %temp% steamcmd.exe will be extracted and the script will continue to run.
+REM If neither steamcmd.exe or steamcmd.zip are located in %temp% steamcmd.zip will be downloaded, steamcmd.exe will be extracted and the script will continue to run.
 
 
 START /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\cstrike +app_update 232330 validate +quit
