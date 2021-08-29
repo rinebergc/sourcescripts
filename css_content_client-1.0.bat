@@ -47,4 +47,4 @@ REM Two configuration files are modified/created to enable CS:S content in Garry
 DEL /q %temp%\steamcmd.zip & RMDIR /s /q %temp%\steamcmd & RMDIR /s /q %temp%\cstrike
 
 REM MS Docs: The temp folder is not automatically emptied and cleanup is the responsibility of the developer using it.
-REM Note: This may no longer be true in Windows 10 and this could be considered legacy behavior.
+REM Note: Because of Storage sense in Windows 10 this may no longer be true and this could be considered legacy behavior.
