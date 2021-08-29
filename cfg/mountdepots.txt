@@ -1,0 +1,9 @@
+"gamedepotsystem"
+
+{
+  "cstrike" "1"
+  "ep2" "1"
+  "episodic" "1"
+  "hl2" "1"
+  "tf" "1"
+}
