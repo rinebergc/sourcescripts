@@ -6,11 +6,14 @@ REM More information on the ECHO command is available at: https://docs.microsoft
 REM More information on the REM command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rem.
 
 
+
 TASKKILL /f /im hl2.exe
 ECHO To reduce potential issues while the script is running Garry's Mod (and by extension any hl2.exe based Source game) has been stopped.
 
 REM To reduce potential issues while the script is running Garry's Mod (and by extension any hl2.exe based Source game) has been stopped. 
 REM More information on the TASKKILL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill.
+
+
 
 SET /p "driveLetter=Please enter the letter of the drive your Steam installation is located on: "
 IF NOT DEFINED driveLetter SET "driveLetter=C"
@@ -23,6 +26,7 @@ REM More information on the SET command is available at: https://docs.microsoft.
 REM More information on the IF command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/if.
 
 
+
 POWERSHELL -command "If (Test-Path -Path %temp%\steamcmd\steamcmd.exe -PathType leaf) {} Else {If (Test-Path -Path %temp%\steamcmd.zip -PathType leaf) {Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd} Else {(New-Object Net.WebClient).DownloadFile('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip','%temp%\steamcmd.zip'); Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd}}"
 
 REM This script requires the Steam Console Client or SteamCMD, a command-line version of the Steam client, to function.
@@ -31,6 +35,8 @@ REM If steamcmd.zip is located in %temp%: steamcmd.exe will be extracted and the
 REM If neither steamcmd.exe or steamcmd.zip are located in %temp%: steamcmd.zip will be downloaded, steamcmd.exe will be extracted and the script will continue to run.
 REM More information on POWERSHELL is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/powershell.
 REM More information on SteamCMD is available at: https://developer.valvesoftware.com/wiki/SteamCMD.
+
+
 
 START /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\cstrike +app_update 232330 validate +quit
 START /b /wait ROBOCOPY "%temp%\cstrike\cstrike" "%clientDir%\addons\cstrike" "*.vpk"
@@ -44,10 +50,12 @@ REM More information on SteamCMD Commands is available at: https://developer.val
 REM More information on Steam Application IDs is available at: https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
 
 
+
 (@ECHO "mountcfg" & @ECHO { & @ECHO "cstrike"  "%clientDir%\addons\cstrike" & @ECHO }) > "%clientDir%\cfg\mount.cfg"
 (@ECHO "gamedepotsystem" & @ECHO { & @ECHO "cstrike"  "1" & @ECHO }) > "%clientDir%\cfg\mountdepots.txt"
 
 REM Two configuration files are modified/created to enable CS:S content in Garry's Mod.
+
 
 
 DEL /q %temp%\steamcmd.zip & RMDIR /s /q %temp%\steamcmd & RMDIR /s /q %temp%\cstrike
