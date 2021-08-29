@@ -35,7 +35,7 @@ REM More information on SteamCMD is available at: https://developer.valvesoftwar
 START /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\cstrike +app_update 232330 validate +quit
 START /b /wait ROBOCOPY "%temp%\cstrike\cstrike" "%clientDir%\addons\cstrike" "*.vpk"
 
-REM Nesting these actions in a START command allows them to be done synchronously and from the same CMD window.
+REM Nesting these actions in START commands allows them to be done synchronously and from the same CMD window.
 REM SteamCMD is called to anonymously connect to the Steam network and download Counter-Strike: Source Dedicated Server to %temp%.
 REM Because CS:SDS is based on CS:S it contains all the files necessary to enable CS:S support in Garry's Mod.
 REM To save disk space once CS:SDS is downloaded only the files required by Garry's Mod are copied, leaving the rest to be deleted during cleanup.
