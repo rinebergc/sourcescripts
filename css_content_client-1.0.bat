@@ -33,7 +33,7 @@ START /b /wait ROBOCOPY "%temp%\cstrike\cstrike" "%clientDir%\addons\cstrike" "*
 
 REM SteamCMD is called to anonymously connect to the Steam network and download Counter-Strike: Source Dedicated Server.
 REM Because CS:SDS is based on CS:S it contains all the files necessary to enable CS:S support in Garry's Mod.
-REM To save disk space once CS:SDS is downloaded only the files required by Garry's Mod are copied, leaving the rest for deletion.
+REM To save disk space once CS:SDS is downloaded only the files required by Garry's Mod are copied, leaving the rest to be deleted during cleanup.
 REM More information on SteamCMD Commands is available at: https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD.
 REM More information on Steam Application IDs is available at: https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
 
@@ -46,5 +46,5 @@ REM Two configuration files are modified/created to enable CS:S content in Garry
 
 DEL /q %temp%\steamcmd.zip & RMDIR /s /q %temp%\steamcmd & RMDIR /s /q %temp%\cstrike
 
-REM MS Docs: The temp folder is not managed by Windows and it is the responsibility of the developer using it to clean up after themselves.
-REM Note: This may no longer be true in Windows 10 and could be considered legacy behavior.
+REM MS Docs: The temp folder is not automatically emptied and cleanup is the responsibility of the developer using it.
+REM Note: This may no longer be true in Windows 10 and this could be considered legacy behavior.
