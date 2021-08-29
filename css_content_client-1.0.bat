@@ -1,8 +1,8 @@
 @ECHO OFF
 
+REM Echoing is set to off to limit console flooding.
 REM MS Docs: REM records comments in a script, batch, or config.sys file.
 REM More information on REM comments is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rem.
-REM Echoing is set to off to limit console flooding.
 
 
 TASKKILL /f /im hl2.exe
