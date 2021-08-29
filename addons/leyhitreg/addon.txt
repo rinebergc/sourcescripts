@@ -1,11 +1,11 @@
 "AddonInfo"
 {
 	"name"				"LeyHitreg"
-	"version"			"1"
-	"up_date"			""
+	"version"			"3.0.7"
+	"up_date"			"08/19/21"
 	"author_name"			"Leystryku"
 	"author_email"			"Leystryku@gmail.com"
-	"author_url"			""
+	"author_url"			"https://www.gmodstore.com/market/view/leyhitreg-fix-hitboxes-no-more-fake-hits"
 	"info"				"A attempt at fixing the broken hit registration"
 	"override"			"0"
 }
