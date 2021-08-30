@@ -15,13 +15,12 @@ REM
 REM More information on the TASKKILL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill.
 
 
-SET /p "driveLetter=Please enter the letter of the drive your Steam installation is located on: "
+SET /p "driveLetter=If Steam is installed on a non-C: drive please enter its drive letter now, otherwise press enter: "
 IF NOT DEFINED driveLetter SET "driveLetter=C"
 SET "clientDir=%driveLetter%:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod"
 
-REM The game library management system Steam can be installed on any lettered drive.
-REM Asking the user to specify their install location helps increase script versatility.
-REM If the user does not provide input the script will default to the user's C drive.
+REM Prompting the user to select their install disk increases script versatility.
+REM If the user does not provide input the script will default to the C: drive.
 REM
 REM More information on the SET command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1.
 REM More information on the IF command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/if.
