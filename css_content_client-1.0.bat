@@ -31,6 +31,8 @@ REM If steamcmd.exe is located in %temp%\steamcmd: the script will continue to r
 REM If steamcmd.zip is located in %temp%: steamcmd.exe will be extracted and the script will continue to run.
 REM If neither steamcmd.exe or steamcmd.zip are located in %temp%: steamcmd.zip will be downloaded, steamcmd.exe will be extracted and the script will continue to run.
 REM More information on POWERSHELL is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/powershell.
+REM More information on the Test-Path cmdlet is available at: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-path?view=powershell-7.1.
+REM More information on the Expand-Archive cmdlet is available at: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-7.1.
 REM More information on SteamCMD is available at: https://developer.valvesoftware.com/wiki/SteamCMD.
 
 
