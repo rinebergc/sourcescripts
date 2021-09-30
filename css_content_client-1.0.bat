@@ -1,16 +1,17 @@
 @ECHO OFF
 
+REM The comments provided in this document are for my own personal education as well as for clarity and education to any who may read them.
+REM MS Docs: "REM records comments in a script, batch, or config.sys file."
 REM Echoing is set to off to limit console flooding.
-REM MS Docs: REM records comments in a script, batch, or config.sys file.
 REM
 REM More information on the ECHO command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/echo.
 REM More information on the REM command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rem.
 
 
 TASKKILL /f /im hl2.exe
-ECHO To reduce potential issues while the script is running Garry's Mod (and by extension any hl2.exe based Source game) has been stopped.
+ECHO To reduce potential issues while the script is running Garry's Mod has been stopped.
 
-REM To reduce potential issues while the script is running Garry's Mod (and by extension any hl2.exe based Source game) has been stopped.
+REM To reduce potential issues while the script is running Garry's Mod (hl2.exe, and by extension any hl2.exe based game) has been stopped.
 REM
 REM More information on the TASKKILL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill.
 
