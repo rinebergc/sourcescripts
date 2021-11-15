@@ -8,8 +8,8 @@ rem rem: https://docs.microsoft.com/en-us/windows-server/administration/windows-
 
 set /p "driveLetter=If Steam is installed on the C: drive press enter. Otherwise, enter the correct drive letter now: "
 if not defined driveLetter set "driveLetter=C"
-
 set "clientDir=driveLetter:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod"
+
 rem set: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1.
 rem if: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/if.
 
