@@ -49,21 +49,21 @@ rem steam application ids: https://developer.valvesoftware.com/wiki/Steam_Applic
 
 
 
-rem (echo "mountcfg" & ECHO { & echo "cstrike"  "%clientDir%\addons\cstrike" & echo }) > "%clientDir%\cfg\mount.cfg"
 > "%clientDir%\cfg\mount.cfg" (
 	echo "mountcfg"
 	echo {
 	echo "cstrike"  "%clientDir%\addons\cstrike"
 	echo }
 )
+rem Alternative: (echo "mountcfg" & ECHO { & echo "cstrike"  "%clientDir%\addons\cstrike" & echo }) > "%clientDir%\cfg\mount.cfg"
 
-rem (echo "gamedepotsystem" & echo { & echo "cstrike"  "1" & echo }) > "%clientDir%\cfg\mountdepots.txt"
 > "%clientDir%\cfg\mountdepots.txt" (
 	echo "gamedepotsystem"
 	echo {
 	echo "cstrike"  "1"
 	echo }
 )
+rem Alternative: (echo "gamedepotsystem" & echo { & echo "cstrike"  "1" & echo }) > "%clientDir%\cfg\mountdepots.txt"
 
 rem Configure Garry's Mod to mount the newly downloaded content.
 
