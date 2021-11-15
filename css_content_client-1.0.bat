@@ -1,69 +1,78 @@
-@ECHO OFF
+@echo off
 
-REM The comments provided in this document are for my own personal education as well as for clarity and education to any who may read them.
-REM MS Docs: "REM records comments in a script, batch, or config.sys file."
-REM Echoing is set to off to limit console flooding.
+REM Comments have been added to provide clarity and educational value where possible.
 REM
-REM More information on the ECHO command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/echo.
-REM More information on the REM command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rem.
+REM echo: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/echo.
+REM rem: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rem.
 
 
-TASKKILL /f /im hl2.exe
-ECHO To reduce potential issues while the script is running Garry's Mod has been stopped.
 
-REM To reduce potential issues while the script is running Garry's Mod (hl2.exe, and by extension any hl2.exe based game) has been stopped.
+set /p "driveLetter=If Steam is installed on the C: drive press enter. Otherwise, enter the correct drive letter now: "
+if not defined driveLetter set "driveLetter=C"
+set "clientDir=driveLetter:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod"
+
+REM Increase this scripts versatility by allowing the user to specify the drive their Steam client is installed to.
 REM
-REM More information on the TASKKILL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill.
+REM set: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1.
+REM if: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/if.
 
 
-SET /p "driveLetter=If Steam is installed on a non-C: drive please enter its drive letter now, otherwise press enter: "
-IF NOT DEFINED driveLetter SET "driveLetter=C"
-SET "clientDir=%driveLetter%:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod"
 
-REM Prompting the user to select their install disk increases script versatility.
-REM If the user does not provide input the script will default to the C: drive.
+wmic process where "ExecutablePath='%clientDir:\=\\%'" call terminate
+echo "Garry's Mod, if it was running, has been stopped. This will help prevent potential issues while this script runs."
+
+REM wmic: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic.
+REM call: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/call.
+
+
+
+powershell -command "If (Test-Path -Path %temp%\steamcmd\steamcmd.exe -PathType leaf) {} Else {If (Test-Path -Path %temp%\steamcmd.zip -PathType leaf) {Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd} Else {(New-Object Net.WebClient).DownloadFile('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip','%temp%\steamcmd.zip'); Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd}}"
+
+REM This script requires SteamCMD to function. Check for it in %temp% and %temp%\steamcmd. Continue if it's present. Otherwise, download it.
 REM
-REM More information on the SET command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1.
-REM More information on the IF command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/if.
+REM powershell: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/powershell.
+REM test-path: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-path?view=powershell-7.1.
+REM expand-archive: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-7.1.
+REM steamcmd: https://developer.valvesoftware.com/wiki/SteamCMD.
 
 
-POWERSHELL -command "If (Test-Path -Path %temp%\steamcmd\steamcmd.exe -PathType leaf) {} Else {If (Test-Path -Path %temp%\steamcmd.zip -PathType leaf) {Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd} Else {(New-Object Net.WebClient).DownloadFile('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip','%temp%\steamcmd.zip'); Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd}}"
 
-REM This script requires the Steam Console Client or SteamCMD, a command-line version of the Steam client, to function.
-REM If steamcmd.exe is located in %temp%\steamcmd: the script will continue to run.
-REM If steamcmd.zip is located in %temp%: steamcmd.exe will be extracted and the script will continue to run.
-REM If neither steamcmd.exe or steamcmd.zip are located in %temp%: steamcmd.zip will be downloaded, steamcmd.exe will be extracted and the script will continue to run.
+start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\cstrike +app_update 232330 validate +quit
+start /b /wait ROBOCOPY "%temp%\cstrike\cstrike" "%clientDir%\addons\cstrike" "*.vpk"
+
+REM Download the Counter-Strike: Source Dedicated Server to %temp%\cstrike using steamCMD.
+REM The dedicated server includes the content, stored as .vpk's, required by Garry's Mod. To save disk space only these files are copied.
 REM
-REM More information on POWERSHELL is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/powershell.
-REM More information on the Test-Path cmdlet is available at: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-path?view=powershell-7.1.
-REM More information on the Expand-Archive cmdlet is available at: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-7.1.
-REM More information on SteamCMD is available at: https://developer.valvesoftware.com/wiki/SteamCMD.
+REM start: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/start.
+REM steamcmd commands: https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD.
+REM steam application ids: https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
 
 
-START /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\cstrike +app_update 232330 validate +quit
-START /b /wait ROBOCOPY "%temp%\cstrike\cstrike" "%clientDir%\addons\cstrike" "*.vpk"
 
-REM Nesting these actions in START commands allows them to be done synchronously and from the same CMD window.
-REM SteamCMD is called to anonymously connect to the Steam network and download Counter-Strike: Source Dedicated Server to %temp%.
-REM Because CS:SDS is based on CS:S it contains all the files necessary to enable CS:S support in Garry's Mod.
-REM To save disk space once CS:SDS is downloaded only the files required by Garry's Mod are copied, leaving the rest to be deleted during cleanup.
+REM (echo "mountcfg" & ECHO { & echo "cstrike"  "%clientDir%\addons\cstrike" & echo }) > "%clientDir%\cfg\mount.cfg"
+> "%clientDir%\cfg\mount.cfg" (
+	echo "mountcfg"
+	echo {
+	echo "cstrike"  "%clientDir%\addons\cstrike"
+	echo }
+)
+
+REM (echo "gamedepotsystem" & echo { & echo "cstrike"  "1" & echo }) > "%clientDir%\cfg\mountdepots.txt"
+> "%clientDir%\cfg\mountdepots.txt" (
+	echo "gamedepotsystem"
+	echo {
+	echo "cstrike"  "1"
+	echo }
+)
+
+REM Configure Garry's Mod to mount the newly downloaded content.
+
+
+
+del /q %temp%\steamcmd.zip & rmdir /s /q %temp%\steamcmd & rmdir /s /q %temp%\cstrike
+
+REM Clean up the temp files. It's up to the developer to manage their usage of the %temp% folder. Storage Sense in Windows 10+ may mean this is no longer be true.
 REM
-REM More information on the START command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/start.
-REM More information on SteamCMD Commands is available at: https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD.
-REM More information on Steam Application IDs is available at: https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
-
-
-(@ECHO "mountcfg" & @ECHO { & @ECHO "cstrike"  "%clientDir%\addons\cstrike" & @ECHO }) > "%clientDir%\cfg\mount.cfg"
-(@ECHO "gamedepotsystem" & @ECHO { & @ECHO "cstrike"  "1" & @ECHO }) > "%clientDir%\cfg\mountdepots.txt"
-
-REM Two configuration files are modified/created to enable CS:S content in Garry's Mod.
-
-
-DEL /q %temp%\steamcmd.zip & RMDIR /s /q %temp%\steamcmd & RMDIR /s /q %temp%\cstrike
-
-REM MS Docs: The temp folder is not automatically emptied and cleanup is the responsibility of the developer using it.
-REM Note: Because of Storage sense in Windows 10 this may no longer be true and this could be considered legacy behavior.
-REM
-REM More information on the DEL command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del.
-REM More information on the RMDIR command is available at: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rmdir.
-REM More information on Storage sense is available at: https://support.microsoft.com/en-us/windows/manage-drive-space-with-storage-sense-654f6ada-7bfc-45e5-966b-e24aded96ad5.
+REM del: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del.
+REM rmdir: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rmdir.
+REM storage sense: https://support.microsoft.com/en-us/windows/manage-drive-space-with-storage-sense-654f6ada-7bfc-45e5-966b-e24aded96ad5.
