@@ -6,7 +6,7 @@ set "clientDir=driveLetter:\Program Files (x86)\Steam\steamapps\common\GarrysMod
 
 
 
-wmic process where "ExecutablePath='%clientDir:\=\\%'" call terminate
+wmic process where "ExecutablePath='%clientDir:\=\\%\\hl2.exe'" call terminate
 echo "Garry's Mod, if it was running, has been stopped. This will help prevent potential issues while this script runs."
 
 
