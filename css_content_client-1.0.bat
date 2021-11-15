@@ -11,8 +11,6 @@ set /p "driveLetter=If Steam is installed on the C: drive press enter. Otherwise
 if not defined driveLetter set "driveLetter=C"
 set "clientDir=driveLetter:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod"
 
-rem Increase this scripts versatility by allowing the user to specify the drive their Steam client is installed to.
-rem
 rem set: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1.
 rem if: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/if.
 
@@ -38,7 +36,7 @@ rem steamcmd: https://developer.valvesoftware.com/wiki/SteamCMD.
 
 
 start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\cstrike +app_update 232330 validate +quit
-start /b /wait ROBOCOPY "%temp%\cstrike\cstrike" "%clientDir%\addons\cstrike" "*.vpk"
+start /b /wait robocopy "%temp%\cstrike\cstrike" "%clientDir%\addons\cstrike" "*.vpk"
 
 rem Download the Counter-Strike: Source Dedicated Server to %temp%\cstrike using steamCMD.
 rem The dedicated server includes the content, stored as .vpk's, required by Garry's Mod. To save disk space only these files are copied.
@@ -71,8 +69,5 @@ rem Configure Garry's Mod to mount the newly downloaded content.
 
 del /q %temp%\steamcmd.zip & rmdir /s /q %temp%\steamcmd & rmdir /s /q %temp%\cstrike
 
-rem Clean up the temp files. It's up to the developer to manage their usage of the %temp% folder. Storage Sense in Windows 10+ may mean this is no longer be true.
-rem
 rem del: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del.
 rem rmdir: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rmdir.
-rem storage sense: https://support.microsoft.com/en-us/windows/manage-drive-space-with-storage-sense-654f6ada-7bfc-45e5-966b-e24aded96ad5.
