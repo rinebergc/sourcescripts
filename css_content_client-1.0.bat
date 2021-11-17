@@ -14,14 +14,6 @@ rem set: https://docs.microsoft.com/en-us/windows-server/administration/windows-
 
 
 
-wmic process where "ExecutablePath='%clientDir:\=\\%\\hl2.exe'" call terminate
-echo "Garry's Mod, if it was running, has been stopped. This will help prevent potential issues while this script runs."
-
-rem call: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/call.
-rem wmic: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic.
-
-
-
 powershell -command "If (Test-Path -Path %temp%\steamcmd\steamcmd.exe -PathType leaf) {} Else {If (Test-Path -Path %temp%\steamcmd.zip -PathType leaf) {Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd} Else {(New-Object Net.WebClient).DownloadFile('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip','%temp%\steamcmd.zip'); Expand-Archive -LiteralPath %temp%\steamcmd.zip -DestinationPath %temp%\steamcmd}}"
 
 rem This script requires SteamCMD to function. Check for it in %temp% and %temp%\steamcmd. Continue if it's present. Otherwise, download it.
@@ -40,6 +32,14 @@ rem The dedicated server includes the content, stored as .vpk's, required by Gar
 rem start: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/start.
 rem steamcmd commands: https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD.
 rem steam application ids: https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
+
+
+
+wmic process where "ExecutablePath='%clientDir:\=\\%\\hl2.exe'" call terminate
+echo "Garry's Mod, if it was running, has been stopped. This will help prevent potential issues while this script runs."
+
+rem call: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/call.
+rem wmic: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic.
 
 
 
