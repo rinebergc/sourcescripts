@@ -43,7 +43,6 @@ rem steam application ids: https://developer.valvesoftware.com/wiki/Steam_Applic
 
 
 
-rem Alternative: (echo "mountcfg" & ECHO { & echo "cstrike"  "%clientDir%\garrysmod\addons\cstrike" & echo }) > "%clientDir%\garrysmod\cfg\mount.cfg"
 > "%clientDir%\garrysmod\cfg\mount.cfg" (
 	echo "mountcfg"
 	echo {
@@ -51,7 +50,6 @@ rem Alternative: (echo "mountcfg" & ECHO { & echo "cstrike"  "%clientDir%\garrys
 	echo }
 )
 
-rem Alternative: (echo "gamedepotsystem" & echo { & echo "cstrike"  "1" & echo }) > "%clientDir%\garrysmod\cfg\mountdepots.txt"
 > "%clientDir%\garrysmod\cfg\mountdepots.txt" (
 	echo "gamedepotsystem"
 	echo {
