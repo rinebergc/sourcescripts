@@ -29,8 +29,8 @@ rem This script requires SteamCMD to function. Check for it and continue if it's
 
 
 
-start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\cstrike +app_update 232330 validate +quit
-start /b /wait robocopy "%temp%\cstrike\cstrike" "%clientDir%\garrysmod\addons\cstrike" "*.vpk"
+start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\steamcmd\cstrike +app_update 232330 validate +quit
+start /b /wait robocopy "%temp%\steamcmd\cstrike\cstrike" "%clientDir%\garrysmod\addons\cstrike" "*.vpk"
 rem Download the Counter-Strike: Source Dedicated Server to %temp%\cstrike using steamCMD.
 rem The dedicated server includes the content, stored as .vpk's, required by Garry's Mod. To save disk space only these files are copied.
 
@@ -54,5 +54,5 @@ rem Kill Garry's Mod, if it's running, and edit mount/mountdepots.cfg to mount t
 
 
 
-del /q %temp%\steamcmd.zip & rmdir /s /q %temp%\steamcmd & rmdir /s /q %temp%\cstrike
+del /q %temp%\steamcmd.zip & rmdir /s /q %temp%\steamcmd
 rem Cleanup - Remove temporary files and directories.
