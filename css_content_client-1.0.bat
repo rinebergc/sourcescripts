@@ -5,8 +5,6 @@ rem For more information on Powershell cmdlets see: https://docs.microsoft.com/e
 rem For more information on SteamCMD see: https://developer.valvesoftware.com/wiki/SteamCMD, https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD, and https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
 rem For more information on Windows commands see: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands
 
-
-
 set "folderPicker="(new-object -COM 'Shell.Application').BrowseForFolder(0,'Please select your GarrysMod client directory. Typically: This PC\Local Disk (C:)\Program Files (x86)\Steam\steamapps\common\GarrysMod.',0,0).self.path""
 for /f "usebackq delims=" %%I in (`powershell -command %folderPicker%`) do set "clientDir=%%I"
 rem Prompt the user to select their Garry's Mod directory rather than assume where it's installed.
