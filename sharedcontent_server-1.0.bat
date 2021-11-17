@@ -36,8 +36,10 @@ echo 3 - TF2
 echo 4 - QUIT
 echo.
 set /p input="PLEASE ENTER 0, 1, 2, 3, OR 4: "
+rem Create a text-based interface to control the script.
 
 if %input%==0 cls && set /p account="PLEASE ENTER YOUR STEAM USERNAME: " && goto MENU
+rem Re-prompt the user for their Steam username.
 
 if %input%==1 ^
 start /b /wait %temp%\steamcmd\steamcmd.exe +login %account% +force_install_dir %install_dir%\ep2 +app_update 420 validate +quit ^
@@ -45,18 +47,22 @@ start /b /wait %temp%\steamcmd\steamcmd.exe +login %account% +force_install_dir 
 && start /b /wait robocopy /is /it /mov "%temp%\steamcmd\ep2\episodic" "%sharedcontent%\episodic" "*.vpk" ^
 && start /b /wait robocopy /is /it /mov "%temp%\steamcmd\ep2\ep2" "%sharedcontent%\ep2" "*.vpk" ^
 && goto MENU
+rem Download HL2:EP2 (Contains HL2, HL2:EP1, HL2:EP2).
 
 if %input%==2 ^
 start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %install_dir%\cstrike +app_update 232330 validate +quit ^
 && start /b /wait robocopy /is /it /mov "%install_dir%\cstrike\cstrike" "%sharedcontent%\cstrike" "*.vpk" ^
 && goto MENU
+rem Download CS:S.
 
 if %input%==3 ^
 start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %install_dir%\tf +app_update 232250 validate +quit ^
 && start /b /wait robocopy /is /it /mov "%install_dir%\tf\tf" "%sharedcontent%\tf" "*.vpk"
 && goto MENU
+rem Download TF2.
 
 if %input%==4 
 del /q %temp%\steamcmd.zip ^
 & rmdir /s /q %temp%\steamcmd ^
 & exit
+rem Cleanup - Remove temporary files and directories.
