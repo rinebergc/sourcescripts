@@ -1,5 +1,10 @@
 @echo off
 
+rem Comments have been added to provide clarity and educational value where possible.
+rem For more information on Powershell cmdlets see: https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.1.
+rem For more information on SteamCMD see: https://developer.valvesoftware.com/wiki/SteamCMD, https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD, and https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
+rem For more information on Windows commands see: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands.
+
 set steamcmdCheck= ^
 if (Test-Path -Path %temp%\steamcmd\steamcmd.exe -PathType leaf) { ^
 } elseif (Test-Path -Path %temp%\steamcmd.zip -PathType leaf) { ^
