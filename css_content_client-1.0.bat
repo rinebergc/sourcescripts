@@ -22,7 +22,7 @@ rem This script requires SteamCMD to function. Check for it and continue if it's
 
 
 set "folderPicker="(new-object -COM 'Shell.Application').BrowseForFolder(0,'Please select your sharedcontent directory.',0,0).self.path""
-for /f "usebackq delims=" %%I in (`powershell -command %folderPicker%`) do set "sharedcontent=%%I"
+for /f "usebackq delims=" %%I in (`powershell -command %folderPicker%`) do set "clientDir=%%I"
 rem Prompt the user to select their sharedcontent directory rather than assume where it's located.
 
 
