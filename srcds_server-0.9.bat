@@ -22,15 +22,17 @@ rem This script requires SteamCMD to function. Check for it and continue if it's
 
 
 
-powershell -command "(New-Object Net.WebClient).DownloadFile('!CONFIGREPO!','%temp%\main.zip'); Expand-Archive -LiteralPath %temp%\main.zip -DestinationPath %temp%\main"
+https://github.com/rinebergc/serverconfig
+curl -H "Authorization: token !TOKEN!" -L https://github.com/!USERNAME!/!REPO!/archive/refs/heads/main.zip -o %temp%\main.zip
+powershell -command "Expand-Archive -LiteralPath %temp%\main.zip -DestinationPath %temp%\main"
 rem Download config files from Github.
 
 
 
-start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_installDir %srcds% +app_update 4020 validate +quit
-  start /b /wait robocopy /s "%temp%\main\!CONFIGREPO!-main\addons" "%srcds%\garrysmod\addons"
-  start /b /wait robocopy /s "%temp%\main\!CONFIGREPO!-main\data" "%srcds%\garrysmod\data"
-  start /b /wait robocopy /s "%temp%\main\!CONFIGREPO!-main\cfg" "%srcds%\garrysmod\cfg"
+start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_installDir %installDir% +app_update 4020 validate +quit
+  start /b /wait robocopy /s "%temp%\main\!REPO!-main\addons" "%srcds%\garrysmod\addons"
+  start /b /wait robocopy /s "%temp%\main\!REPO!-main\data" "%srcds%\garrysmod\data"
+  start /b /wait robocopy /s "%temp%\main\!REPO!-main\cfg" "%srcds%\garrysmod\cfg"
   start /b /wait robocopy "%srcds%\garrysmod\gamemodes\sandbox\entities\entities" "%srcds%\garrysmod\gamemodes\terrortown\entities\entities" "base_gmodentity.lua"
   start /b /wait robocopy "%srcds%\garrysmod\gamemodes\base\entities\weapons\weapon_base" "%srcds%\garrysmod\gamemodes\terrortown\entities\weapons\functions" "shared.lua"
 rem Download srcds for Garry's Mod, import configuration files, and preaddressing missing entity errors. 
@@ -45,6 +47,6 @@ rem A GSL Token for sv_setsteamaccount can be obtained @ https://steamcommunity.
 
 
 
-del /q %temp%\main.zip & rmdir /s /q %temp%\main
 del /q %temp%\steamcmd.zip & rmdir /s /q %temp%\steamcmd
+del /q %temp%\main.zip & rmdir /s /q %temp%\main
 rem Cleanup - Remove temporary files and directories.
