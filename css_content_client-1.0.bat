@@ -5,12 +5,6 @@ rem For more information on Powershell cmdlets see: https://docs.microsoft.com/e
 rem For more information on SteamCMD see: https://developer.valvesoftware.com/wiki/SteamCMD, https://developer.valvesoftware.com/wiki/Command_Line_Options#SteamCMD, and https://developer.valvesoftware.com/wiki/Steam_Application_IDs.
 rem For more information on Windows commands see: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands.
 
-set "folderPicker="(new-object -COM 'Shell.Application').BrowseForFolder(0,'Please select your GarrysMod client directory. Typically: This PC\Local Disk (C:)\Program Files (x86)\Steam\steamapps\common\GarrysMod.',0,0).self.path""
-for /f "usebackq delims=" %%I in (`powershell -command %folderPicker%`) do set "clientDir=%%I"
-rem Prompt the user to select their Garry's Mod directory rather than assume where it's installed.
-
-
-
 set steamcmdCheck= ^
 if (Test-Path -Path %temp%\steamcmd\steamcmd.exe -PathType leaf) { ^
 } elseif (Test-Path -Path %temp%\steamcmd.zip -PathType leaf) { ^
@@ -27,10 +21,9 @@ rem This script requires SteamCMD to function. Check for it and continue if it's
 
 
 
-start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\steamcmd\cstrike +app_update 232330 validate +quit
-start /b /wait robocopy "%temp%\steamcmd\cstrike\cstrike" "%clientDir%\garrysmod\addons\cstrike" "*.vpk"
-rem Download the Counter-Strike: Source Dedicated Server to %temp%\cstrike using steamCMD.
-rem The dedicated server includes the content, stored as .vpk's, required by Garry's Mod. To save disk space only these files are copied.
+set "folderPicker="(new-object -COM 'Shell.Application').BrowseForFolder(0,'Please select your sharedcontent directory.',0,0).self.path""
+for /f "usebackq delims=" %%I in (`powershell -command %folderPicker%`) do set "sharedcontent=%%I"
+rem Prompt the user to select their sharedcontent directory rather than assume where it's located.
 
 
 
