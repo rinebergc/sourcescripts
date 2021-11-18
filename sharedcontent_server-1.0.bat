@@ -33,7 +33,8 @@ echo.
 echo 1 - HL2 + EP1 + EP2
 echo 2 - CS:S
 echo 3 - TF2
-echo 4 - QUIT
+echo 4 - ALL
+echo 5 - QUIT
 echo.
 set /p input="PLEASE ENTER 0, 1, 2, 3, OR 4: "
 rem Create a text-based interface to control the script.
@@ -65,6 +66,17 @@ start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir 
 rem Download TF2.
 
 if %input%==4 ^
+start /b /wait %temp%\steamcmd\steamcmd.exe +login %account% +force_install_dir %temp%\steamcmd\ep2 +app_update 420 validate +quit ^
+&& start /b /wait robocopy /is /it /mov "%temp%\steamcmd\ep2\hl2" "%sharedcontent%\hl2" "*.vpk" ^
+&& start /b /wait robocopy /is /it /mov "%temp%\steamcmd\ep2\episodic" "%sharedcontent%\episodic" "*.vpk" ^
+&& start /b /wait robocopy /is /it /mov "%temp%\steamcmd\ep2\ep2" "%sharedcontent%\ep2" "*.vpk" ^
+&& start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\steamcmd\cstrike +app_update 232330 validate +quit ^
+&& start /b /wait robocopy /is /it /mov "%temp%\steamcmd\cstrike\cstrike" "%sharedcontent%\cstrike" "*.vpk" ^
+&& start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\steamcmd\tf +app_update 232250 validate +quit ^
+&& start /b /wait robocopy /is /it /mov "%temp%\steamcmd\tf\tf" "%sharedcontent%\tf" "*.vpk" ^
+&& goto MENU
+
+if %input%==5 ^
 del /q %temp%\steamcmd.zip ^
 & rmdir /s /q %temp%\steamcmd ^
 & exit
