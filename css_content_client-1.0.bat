@@ -27,6 +27,13 @@ rem Prompt the user to select their sharedcontent directory rather than assume w
 
 
 
+start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %temp%\steamcmd\cstrike +app_update 232330 validate +quit
+start /b /wait robocopy "%temp%\steamcmd\cstrike\cstrike" "%clientDir%\garrysmod\addons\cstrike" "*.vpk"
+rem Download the Counter-Strike: Source Dedicated Server to %temp%\cstrike using steamCMD.
+rem The dedicated server includes the content, stored as .vpk's, required by Garry's Mod. To save disk space only these files are copied.
+
+
+
 wmic process where "ExecutablePath='%clientDir:\=\\%\\hl2.exe'" call terminate
 echo "Garry's Mod, if it was running, has been stopped. This will help prevent potential issues while this script runs."
 > "%clientDir%\garrysmod\cfg\mount.cfg" (
