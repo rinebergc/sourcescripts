@@ -62,11 +62,11 @@ rem Download CS:S.
 
 if %input%==3 ^
 start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_install_dir %install_dir%\tf +app_update 232250 validate +quit ^
-&& start /b /wait robocopy /is /it /mov "%install_dir%\tf\tf" "%sharedcontent%\tf" "*.vpk"
+&& start /b /wait robocopy /is /it /mov "%install_dir%\tf\tf" "%sharedcontent%\tf" "*.vpk" ^
 && goto MENU
 rem Download TF2.
 
-if %input%==4 
+if %input%==4 ^
 del /q %temp%\steamcmd.zip ^
 & rmdir /s /q %temp%\steamcmd ^
 & exit
