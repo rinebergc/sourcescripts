@@ -27,7 +27,7 @@ rem Download config files from Github.
 
 
 
-start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_installDir %installDir% +app_update 4020 validate +quit
+start /b /wait %temp%\steamcmd\steamcmd.exe +login anonymous +force_installDir %srcds% +app_update 4020 validate +quit
   start /b /wait robocopy /s "%temp%\main\!CONFIGREPO!-main\addons" "%srcds%\garrysmod\addons"
   start /b /wait robocopy /s "%temp%\main\!CONFIGREPO!-main\data" "%srcds%\garrysmod\data"
   start /b /wait robocopy /s "%temp%\main\!CONFIGREPO!-main\cfg" "%srcds%\garrysmod\cfg"
