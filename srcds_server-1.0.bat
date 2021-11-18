@@ -22,7 +22,6 @@ rem This script requires SteamCMD to function. Check for it and continue if it's
 
 
 
-https://github.com/rinebergc/serverconfig
 curl -H "Authorization: token !TOKEN!" -L https://github.com/!USERNAME!/!REPO!/archive/refs/heads/main.zip -o %temp%\main.zip
 powershell -command "Expand-Archive -LiteralPath %temp%\main.zip -DestinationPath %temp%\main"
 rem Download config files from Github.
